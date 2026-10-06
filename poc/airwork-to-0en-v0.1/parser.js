@@ -3,6 +3,8 @@
 'use strict';
 const norm=s=>String(s).normalize('NFKC').replace(/[ \t　]+/g,' ').trim();
 const same=s=>norm(s).replace(/\s+/g,'');
+// Convert exported formatting to text without inserting source markup into the DOM.
+function plainText(value){return String(value).replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1\s*>/gi,'').replace(/<!--[^]*?-->/g,'').replace(/<br\s*\/?\s*>/gi,'\n').replace(/<\/(?:p|div|li|h[1-6]|section|tr)\s*>/gi,'\n').replace(/<\/?(?:p|div|span|strong|b|em|i|u|a|ul|ol|li|h[1-6]|section|table|tbody|tr|td|th|img)\b[^>]*>/gi,'').replace(/&(?:amp|lt|gt|quot|apos|nbsp);|&#(?:x[0-9a-f]+|[0-9]+);/gi,m=>{const named={'&amp;':'&','&lt;':'<','&gt;':'>','&quot;':'"','&apos;':"'",'&nbsp;':' '};if(named[m.toLowerCase()])return named[m.toLowerCase()];const n=m[2].toLowerCase()==='x'?parseInt(m.slice(3,-1),16):parseInt(m.slice(2,-1),10);return n>0&&n<=0x10ffff&&!(n>=0xd800&&n<=0xdfff)?String.fromCodePoint(n):m;});}
 function money(s){s=norm(s).replace(/,/g,'').replace(/円/g,'');if(!/^(?:\d+(?:\.\d+)?万(?:\d+)?)$|^\d+$/.test(s))return null;const parts=s.split('万');const n=parts.length===2?Number(parts[0])*10000+Number(parts[1]||0):Number(s);return Number.isSafeInteger(n)&&n>0?n:null;}
 function pay(line){const text=norm(line);const m=text.match(/^(月給|時給|日給|年俸)\s*([\d,.]+(?:万[\d,]*)?)円?\s*(?:(?:〜|～|~|以上)(?:\s*([\d,.]+(?:万[\d,]*)?)円?)?)?\s*$/);if(!m)return null;const min=money(m[2]),max=m[3]?money(m[3]):null;if(min===null||(m[3]&&(max===null||max<min)))return null;return {unit:{月給:'month',時給:'hour',日給:'day',年俸:'annual'}[m[1]],min,max,format:max!==null?'range':/[〜～~]|以上/.test(text)?'above':'exact'};}
 const definitions=[['company','会社名'],['jobTitle','職種名'],['employment','雇用形態'],['duties','仕事内容'],['salary','給与（形態・総額・下限・上限）'],['workplace','勤務先名'],['address','勤務地住所'],['access','アクセス'],['schedule','勤務時間'],['holidays','休日・休暇'],['requirements','応募資格・対象'],['benefits','待遇・福利厚生'],['insurance','社会保険'],['trial','試用期間'],['selection','応募・選考情報'],['companyAddress','企業所在地'],['contact','問い合わせ先']];
@@ -11,7 +13,7 @@ function parse(input){
  let source=String(input);if(source.length>200000)throw Error('200,000文字以内の原稿を貼り付けてください。');
  // Capture wrappers are discarded only by this explicit delimiter; no fetched content.
  const wrapper=source.indexOf('## 求人内容');if(wrapper>=0)source=source.slice(wrapper+'## 求人内容'.length).split('## 取得メタデータ')[0];
- const raw=source.replace(/\r\n?/g,'\n').split('\n');const lines=raw.map(norm);const fields=Object.fromEntries(definitions.map(([k,label])=>[k,{label,status:'missing',value:null,candidates:[],note:''}]));const notices=[];
+ const raw=plainText(source).replace(/\r\n?/g,'\n').split('\n');const lines=raw.map(norm);const fields=Object.fromEntries(definitions.map(([k,label])=>[k,{label,status:'missing',value:null,candidates:[],note:''}]));const notices=[];
  function add(k,value,start,end,note=''){if(value===null||value==='')return;const f=fields[k];const identity=typeof value==='object'?JSON.stringify(value):same(value);const old=f.candidates.find(c=>c.identity===identity);if(old){old.sources.push({start:start+1,end:end+1,text:raw.slice(start,end+1).join('\n')});notices.push(`${f.label}：同一内容の重複を1候補に整理（元記載は保持）`);return;}f.candidates.push({value,identity,sources:[{start:start+1,end:end+1,text:raw.slice(start,end+1).join('\n')}],note});}
  function block(k,heads,stops=boundary){for(let i=0;i<lines.length;i++){if(!heads.includes(lines[i]))continue;let j=i+1;while(j<lines.length&&!stops.has(lines[j])&&!/^応募画面へ進む$|^約1分/.test(lines[j]))j++;let value=raw.slice(i+1,j).join('\n').trim();if(value)add(k,value,i+1,j-1);}}
  const top=lines.findIndex(x=>x==='お仕事について');const topEnd=top<0?lines.length:top;
@@ -37,7 +39,7 @@ function parse(input){
 }
 
 function normalize(result){const {fields,notices=[],source='',lineCount=0}=result;
- for(const [k,f] of Object.entries(fields)){if(f.candidates.length===1){f.status='clear';f.value=f.candidates[0].value;}if(f.forceReview){f.status='review';f.value=null;}if(f.candidates.length>1){f.status='review';f.note='異なる候補があります。選ぶまで自動反映しません。';}}
+ for(const [k,f] of Object.entries(fields)){for(const c of f.candidates){if(typeof c.value==='string')c.value=plainText(c.value);}if(f.candidates.length===1){f.status='clear';f.value=f.candidates[0].value;}if(f.forceReview){f.status='review';f.value=null;}if(f.candidates.length>1){f.status='review';f.note='異なる候補があります。選ぶまで自動反映しません。';}}
  // Separate the original text from structural certainty. Occupation/age/contract conditions are never inferred.
  if(fields.salary.status==='clear'&&fields.salary.value.unit==='annual'){fields.salary.status='review';fields.salary.note='年俸は既存入力PoCの選択肢にありません。';fields.salary.value=null;}
  if(fields.schedule.status==='clear'){fields.schedule.note='勤務時間の原文を反映。所定時間・シフト・実働は推定しません。';}
@@ -50,9 +52,9 @@ function toInput(selected){const values={};const get=k=>selected[k];for(const k 
  if(get('schedule')){values.timeMode='other';values.otherTime=get('schedule');}
  if(get('salary')){const p=get('salary');if(['month','hour','day'].includes(p.unit)&&Number.isFinite(p.min)&&['exact','range','above'].includes(p.format)&&(p.format!=='range'||Number.isFinite(p.max)&&p.max>=p.min)){values.unit=p.unit;values.totalOnly=true;values.reported=String(p.min);values.totalFormat=p.format;if(p.max!==null)values.reportedMax=String(p.max);}}
  if(get('trial')){const text=get('trial'),n=norm(text);values.trialBenefits=text;const m=n.match(/^試用・研修期間[:：]\s*(\d+)\s*(ヶ月|か月|カ月|ヵ月|日|週間)/);if(m){values.trial='yes';values.trialMin=m[1];values.trialUnit=m[2]==='日'?'day':m[2]==='週間'?'week':'month';}else if(/^試用・研修期間[:：]\s*なし/.test(n)){values.trial='no';}
- if(/試用・研修期間の条件[:：]\s*本採用と同じ/.test(n)&&!/試用期間.*(?:時給|日給|月給).*\d/.test(n)){values.trialDiff='same';}else if(/試用・研修期間の条件[:：]\s*給与条件が異なる/.test(n)){values.trialDiff='different';values.trialSalaryDiff=true;values.trialBenefitsDiff=true;values.trialAllowances=text;const a=text.split('\n').map(norm).filter(x=>/^基本給\s*[:：]/.test(x)).map(x=>pay(x.replace(/^基本給\s*[:：]\s*/,''))).filter(Boolean);if(a.length===1&&['month','hour','day'].includes(a[0].unit)){values.trialSalaryUnit=a[0].unit;values.trialBase=String(a[0].min);}}
+ if(/試用・研修期間の条件[:：]\s*本採用と同じ/.test(n)&&!/試用期間.*(?:時給|日給|月給).*\d/.test(n)){values.trialDiff='same';}else if(/試用・研修期間の条件[:：]\s*給与条件が異なる/.test(n)){values.trialDiff='different';values.trialBenefitsDiff=true;const a=text.split('\n').map(norm).filter(x=>/^基本給\s*[:：]/.test(x)).map(x=>pay(x.replace(/^基本給\s*[:：]\s*/,''))).filter(Boolean);if(a.length===1&&['month','hour','day'].includes(a[0].unit)){values.trialSalaryDiff=true;values.trialSalaryUnit=a[0].unit;values.trialBase=String(a[0].min);}}
  }
  return values;
 }
-return {parse,pay,money,toInput,normalize,definitions};
+return {parse,pay,money,toInput,normalize,definitions,plainText};
 });

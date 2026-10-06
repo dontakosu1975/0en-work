@@ -13,5 +13,8 @@ test('total adapter never invents base pay or allowances',()=>{const p=P.toInput
 test('trial same and explicit different pay are review',()=>{const r=P.parse('試用・研修期間：3ヶ月\n試用・研修期間の条件：本採用と同じ\n試用期間1ヶ月間は時給1140円です。');assert.equal(r.fields.trial.status,'review');});
 test('one set of insurance works after upstream bug fixed',()=>assert.equal(P.parse('【社会保険】\n健康保険').fields.insurance.value,'健康保険'));
 test('conflicting insurance does not merge',()=>{const r=P.parse('【社会保険】\n健康保険\n【社会保険】\n雇用保険');assert.equal(r.fields.insurance.status,'review');});
-test('source content is never evaluated as HTML',()=>assert.equal(P.parse('仕事内容\n<script>alert(1)</script>\n特徴').fields.duties.value,'<script>alert(1)</script>'));
+test('source content is never evaluated as HTML',()=>assert.equal(P.parse('仕事内容\n<script>alert(1)</script>\n特徴').fields.duties.value,null));
+test('export HTML becomes readable text',()=>assert.equal(P.plainText('業務1<br>業務2<br />業務3<strong>補足</strong>'),'業務1\n業務2\n業務3補足'));
+test('entities and ordinary angle comparisons',()=>assert.equal(P.plainText('A &amp; B &lt; C 1 < 2'),'A & B < C 1 < 2'));
+test('paste headings separated by br',()=>assert.equal(P.parse('仕事内容<br>清掃<br>特徴').fields.duties.value,'清掃'));
 console.log(`${count} tests passed`);
