@@ -19,21 +19,18 @@
 
 ## Cloudflareでの公開
 
-公開先ドメインは `0en.work` です。以下は、この静的HTMLをCloudflare PagesのGit連携で公開する場合の設定例です。実際のプロジェクト種別・連携設定はCloudflare管理画面で確認してください。
+公開先ドメインは `0en.work` です。GitHubのチェックに `Workers Builds: 0en-work` が表示され、`main` へのpushでCloudflare Workersの自動ビルドが開始されることを確認しました。
 
-| 設定 | 値 |
+| 項目 | 確認内容 |
 |---|---|
 | Gitリポジトリ | `dontakosu1975/0en-work` |
-| Production branch | `main` |
-| Framework preset | `None` |
-| Build command | `exit 0` |
-| Build output directory | `.`（リポジトリ直下） |
-| Root directory | リポジトリ直下（未指定） |
-| Custom domain | `0en.work` |
+| 更新ブランチ | `main` |
+| 自動ビルド | `Workers Builds: 0en-work` |
+| 公開ファイル | リポジトリ直下の `index.html` |
 
-Git連携と自動デプロイが有効なら、`main` へのpushで本番デプロイが開始されます。ビルド監視対象からREADMEなどを除外している場合、今回の文書更新だけではデプロイされないことがあります。
+HTML自体のビルド処理はありません。Cloudflare側のBuild command、Deploy command、静的アセットのディレクトリ指定は管理画面で確認してください。このリポジトリには、現在Wrangler設定ファイルやpackage.jsonはありません。
 
-初期の `README.txt` はDirect Uploadの手順です。既存のPagesプロジェクトがDirect Uploadで作られている場合、そのプロジェクトを後からGit連携へ切り替えることはできません。Git連携のプロジェクトを別途用意する必要があります。
+初期の `README.txt` は手動アップロードの案内です。現在のGit連携による自動更新の確認には、Cloudflare Workersの対象プロジェクトのビルド履歴を使用してください。
 
 ## 更新とデプロイの確認
 
@@ -48,6 +45,6 @@ APIキー、トークン、ローカルの環境変数ファイルはコミッ�
 
 ## 公式資料
 
-- [Cloudflare Pages: 静的HTMLのデプロイ](https://developers.cloudflare.com/pages/framework-guides/deploy-anything/)
-- [Cloudflare Pages: Git連携](https://developers.cloudflare.com/pages/configuration/git-integration/)
+- [Cloudflare Workers: Static Assets](https://developers.cloudflare.com/workers/static-assets/)
+- [Cloudflare Workers: Builds](https://developers.cloudflare.com/workers/ci-cd/builds/)
 - [Cloudflare Pages: Direct Upload](https://developers.cloudflare.com/pages/get-started/direct-upload/)
