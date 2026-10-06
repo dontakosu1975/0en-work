@@ -22,3 +22,5 @@ for(const name of ['paste','file']){$(name+'-tab').addEventListener('click',()=>
 window.addEventListener('message',e=>{if(e.origin!==location.origin)return;if(e.source===window.parent&&e.data?.type==='portal-file')sourceTab('file');if(e.source===window.parent&&e.data?.type==='portal-snapshot'){if(!imported){alert('抽出内容を求人入力へ反映してから保存してください。');return;}$('editor').contentWindow.postMessage({type:'portal-snapshot'},location.origin);}if(e.source===$('editor').contentWindow&&e.data?.type==='portal-snapshot-result')window.parent.postMessage(e.data,location.origin);});
 
 window.addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==window.parent||e.data?.type!=='portal-company-profile')return;companyDefaults={};for(const key of ['company','companyAddress','contact'])if(typeof e.data.values?.[key]==='string')companyDefaults[key]=e.data.values[key];});
+
+window.addEventListener('message',e=>{if(e.origin===location.origin&&e.source===window.parent&&e.data?.type==='portal-review')$('editor').contentWindow.postMessage({type:'portal-review'},location.origin);});
