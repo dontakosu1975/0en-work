@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="0EN WORK - 採用に、お金をかけない。採用する人に、お金をかける。">
+  <title>0EN WORK | Coming Soon</title>
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --text: #171717;
+      --muted: #666;
+      --line: #deded8;
+      --accent: #111;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+                   "Noto Sans JP", "Hiragino Kaku Gothic ProN",
+                   "Yu Gothic", sans-serif;
+    }
+    main {
+      width: min(1080px, calc(100% - 40px));
+      min-height: 100vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 30px 0;
+      font-weight: 800;
+      letter-spacing: .06em;
+      font-size: 18px;
+    }
+    .hero {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 70px 0 100px;
+    }
+    .hero-inner { max-width: 900px; }
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 28px;
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(42px, 7.5vw, 88px);
+      line-height: 1.08;
+      letter-spacing: -.045em;
+    }
+    .lead {
+      margin: 32px 0 0;
+      font-size: clamp(19px, 2.5vw, 29px);
+      line-height: 1.7;
+      font-weight: 700;
+    }
+    .zeros {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 42px;
+    }
+    .zero {
+      min-width: 150px;
+      padding: 18px 22px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+    }
+    .zero strong {
+      display: block;
+      font-size: 26px;
+      margin-bottom: 3px;
+    }
+    .zero span { color: var(--muted); font-size: 14px; }
+    .message {
+      max-width: 680px;
+      margin-top: 42px;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 2;
+    }
+    footer {
+      padding: 24px 0 34px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 12px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 600px) {
+      main { width: min(100% - 28px, 1080px); }
+      header { padding-top: 22px; }
+      .hero { padding: 42px 0 70px; }
+      .lead { margin-top: 24px; }
+      .zero { flex: 1 1 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>0EN WORK</header>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="eyebrow">COMING SOON</div>
+
+        <h1>採用に、お金をかけない。<br>採用する人に、お金をかける。</h1>
+
+        <p class="lead">
+          求人掲載 0円。応募 0円。採用 0円。<br>
+          そんな求人サービスを、いま作っています。
+        </p>
+
+        <div class="zeros" aria-label="0EN WORKの基本方針">
+          <div class="zero"><strong>0円</strong><span>求人掲載</span></div>
+          <div class="zero"><strong>0円</strong><span>応募</span></div>
+          <div class="zero"><strong>0円</strong><span>採用</span></div>
+        </div>
+
+        <p class="message">
+          求人広告に何十万円も使うより、そのお金を採用した人の給与や、
+          働く環境のために使ってほしい。0EN WORKは、そのための求人サービスを目指しています。
+        </p>
+      </div>
+    </section>
+
+    <footer>
+      <span>0EN WORK</span>
+      <span>現在開発中です。</span>
+    </footer>
+  </main>
+</body>
+</html>
