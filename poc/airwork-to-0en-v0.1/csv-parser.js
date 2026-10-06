@@ -1,0 +1,32 @@
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory(require('./parser'));else root.AirworkCSV=factory(root.AirworkParser);})(globalThis,P=>{
+'use strict';
+function decode(buffer,encoding='utf-8'){return new TextDecoder(encoding,{fatal:true}).decode(buffer).replace(/^\uFEFF/,'');}
+function read(text,delimiter='auto'){
+ if(text.length>5000000)throw Error('5MB相当以内のテキストを選んでください。');text=text.replace(/^\uFEFF/,'');
+ if(delimiter==='auto'){const head=text.split(/\r?\n/)[0];const tabs=(head.match(/\t/g)||[]).length,commas=(head.match(/,/g)||[]).length;if(tabs&&commas)throw Error('区切り文字をCSVまたはタブに指定してください。');delimiter=tabs?'\t':',';}
+ const rows=[];let row=[],value='',quoted=false,closed=false;const cell=()=>{row.push(value);value='';closed=false;};const record=()=>{cell();if(row.some(v=>v!==''))rows.push(row);row=[];};
+ for(let i=0;i<text.length;i++){const c=text[i];if(quoted){if(c==='"'){if(text[i+1]==='"'){value+='"';i++;}else{quoted=false;closed=true;}}else value+=c;continue;}if(c==='"'){if(value||closed)throw Error('引用符の位置が不正です。');quoted=true;continue;}if(c===delimiter){cell();continue;}if(c==='\r'||c==='\n'){if(c==='\r'&&text[i+1]==='\n')i++;record();continue;}if(closed)throw Error('閉じた引用符の後に不正な文字があります。');value+=c;}
+ if(quoted)throw Error('閉じていない引用符があります。');if(value||row.length||closed)record();if(!rows.length)throw Error('ヘッダーがありません。');const headers=rows.shift();if(new Set(headers).size!==headers.length)throw Error('同じ名前の列が複数あります。');if(rows.some(r=>r.length!==headers.length))throw Error('ヘッダーとデータ行の列数が一致しません。区切り文字・文字コードを確認してください。');return {headers,rows,delimiter};
+}
+const code=h=>h.normalize('NFKC').match(/\(([a-z0-9_]+)\)$/)?.[1]||'';
+function mapRow(table,index){const row=table.rows[index];if(!row)throw Error('求人を選択してください。');const cols={};for(let i=0;i<table.headers.length;i++){const k=code(table.headers[i]);if(k){if(cols[k])throw Error('同じ内部列名が複数あります。');cols[k]={value:String(row[i]??''),header:table.headers[i],column:i+1};}}
+ const fields=Object.fromEntries(P.definitions.map(([k,label])=>[k,{label,status:'missing',value:null,candidates:[],note:''}]));const notices=['確認済み271列サンプルの日本語値・列コードでマッピング。未確認のCD値を解釈しません。'];
+ const get=k=>cols[k]?.value?.trim()||'';
+ function add(k,value,keys,note='',review=false){if(value===null||value==='')return;fields[k].candidates.push({value,identity:JSON.stringify(value),note,sources:keys.filter(x=>cols[x]).map(x=>({start:index+2,end:index+2,text:cols[x].header+'\n'+cols[x].value,label:`データ${index+1}件目・${cols[x].column}列：${cols[x].header}`}))});fields[k].note=note;fields[k].forceReview=review;}
+ const straightforward={jobTitle:'title',duties:'description',workplace:'working_location_id_jp',access:'working_location_access',holidays:'holiday',requirements:'personal',benefits:'welfare',selection:'selection_flow',contact:'contact_email'};
+ for(const [k,c]of Object.entries(straightforward))add(k,get(c),[c]);
+ if(get('job_type_jp')){const types={正社員:'regular','アルバイト・パート':'part',契約社員:'contract'};add('employment',types[get('job_type_jp')]||get('job_type_jp'),['job_type_jp'],'CDは使わず日本語の雇用形態を対応',!types[get('job_type_jp')]);}
+ const addrKeys=['working_location_postcode','working_location_prefecture','working_location_city_area','working_location_building_name'];const addr=addrKeys.map(get).filter(Boolean).join('\n');add('address',addr,addrKeys,'出力された住所構成値だけを連結。欠けた構成値は補完しない。');
+ const scheduleKeys=['working_style_jp','working_time_supplement'];const schedule=(get('working_style_jp')?'勤務形態：'+get('working_style_jp')+'\n':'')+get('working_time_supplement');add('schedule',schedule.trim(),scheduleKeys);
+ const units={月給:'month',時給:'hour',日給:'day'},formats={'範囲を指定する':'range','下限を指定する':'above'};const u=get('salary_form_jp'),f=get('salary_display_method_jp'),min=P.money(get('minimum_salary')),max=get('maximum_salary')?P.money(get('maximum_salary')):null;
+ if(u||f||get('minimum_salary')){const valid=!!units[u]&&!!formats[f]&&min!==null&&(formats[f]!=='range'||max!==null&&max>=min)&&(formats[f]!=='above'||max===null);const clearComponents=['fixed_overtime_type_jp','commuting_allowance_type_jp','others_allowance_type_jp'].every(k=>get(k)==='なし');const value={unit:units[u]||u,min,max,format:formats[f]||f};add('salary',value,['salary_form_jp','salary_display_method_jp','minimum_salary','maximum_salary','fixed_overtime_type_jp','commuting_allowance_type_jp','others_allowance_type_jp'],!valid?'未確認の給与表記または不正な金額。自動反映しません。':!clearComponents?'一律手当・固定残業代がある／不明です。給与額欄が総額か内訳か確認してください。':'サンプルでは固定残業・一律手当なし。給与額をそのまま保持。',!valid||!clearComponents);}
+ const insuranceKeys={social_insurance_health_jp:'健康保険',social_insurance_wp_jp:'厚生年金保険',social_insurance_ei_jp:'雇用保険',social_insurance_wc_jp:'労災保険'};const insurance=[];let insuranceUnknown=false;for(const [k,name]of Object.entries(insuranceKeys)){if(get(k)==='有')insurance.push(name);else if(get(k))insuranceUnknown=true;}
+ if(insurance.length||insuranceUnknown)add('insurance',insuranceUnknown?Object.entries(insuranceKeys).map(([k,n])=>n+'：'+(get(k)||'空欄')).join('\n'):insurance.join('、'),Object.keys(insuranceKeys),'日本語値「有」のみ加入一覧へ。空欄・未確認の値は未評価。',insuranceUnknown||Object.keys(insuranceKeys).some(k=>!get(k)));
+ const trialKeys=['is_probationary_period_jp','probationary_time','probationary_salary_jp','probationary_salary_form_jp','probationary_salary_display_method_jp','probationary_minimum_salary','probationary_maximum_salary','probationary_fixed_overtime_type_jp','probationary_commuting_allowance_type_jp','probationary_others_allowance_type_jp','probationary_salary_working_hours_jp','probationary_period_supplement'];
+ if(get('is_probationary_period_jp')==='なし')add('trial','試用・研修期間：なし',trialKeys);
+ else if(get('is_probationary_period_jp')==='あり'){let t='試用・研修期間：'+get('probationary_time');if(get('probationary_salary_jp')==='本採用時と異なる')t+='\n試用・研修期間の条件：給与条件が異なる';else if(get('probationary_salary_jp'))t+='\n試用・研修期間の条件：'+get('probationary_salary_jp');for(const k of trialKeys.slice(3))if(get(k))t+='\n'+cols[k].header+'：'+get(k);add('trial',t,trialKeys,'試用給与額欄を基本給と推定しない。金額・条件は原文で保持。');}
+ // No employer column in the supplied export. Never derive it from workplace/client code.
+ return P.normalize({fields,notices,source:'AirワークCSV/TXT データ'+(index+1)+'件目',lineCount:0});
+}
+return {read,mapRow,decode,code};
+});
