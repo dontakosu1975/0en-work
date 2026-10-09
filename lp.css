@@ -4,3 +4,4 @@
 :root{line-break:strict}body{word-break:normal;overflow-wrap:break-word}.section-heading>div{min-width:0}h1,h2,h3{line-break:strict;text-wrap:balance}@supports (text-wrap:pretty){h1,h2,h3{text-wrap:pretty}}
 :root{line-break:strict}.section-heading h2 .heading-line{display:block;white-space:nowrap}@media(max-width:680px){.section-heading h2 .heading-line{white-space:normal}}
 :root{line-break:strict}.hero h1{font-size:clamp(42px,4.8vw,64px)}.hero h1 .hero-line,.concept h2 .heading-line{display:block;white-space:nowrap}@media(max-width:680px){.hero h1 .hero-line,.concept h2 .heading-line{white-space:normal}}
+.is-disabled{cursor:default;pointer-events:none}
