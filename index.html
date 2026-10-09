@@ -6,6 +6,24 @@
   <meta name="description" content="0EN WORKは、企業が求人原稿を作り、無料で公開し、自社のSNSやサイトへ自由に届けるための採用広報基盤です。">
   <title>0EN WORK | 求人ページくらい、0円で作れてもいい。</title>
   <link rel="stylesheet" href="lp.css">
+  <style>
+    body{line-break:strict;word-break:normal;overflow-wrap:break-word}
+    h1,h2,h3,.hero-lead,.hero-note,.section-lead,.brand-photo-copy p,.final-cta p{text-wrap:pretty}
+    @supports (word-break:auto-phrase){body{word-break:auto-phrase}}
+    .hero-line{display:block}
+    @media(max-width:680px){
+      .hero{padding:54px 0 46px}
+      .hero h1{font-size:clamp(35px,9.6vw,39px);line-height:1.24;letter-spacing:-.045em}
+      .hero-line{white-space:nowrap}
+      .hero-lead{font-size:18px;line-height:1.75;max-width:22em;margin-top:26px}
+      .hero-note{font-size:14px;line-height:1.8;max-width:25em}
+      .eyebrow,.section-kicker{line-height:1.6}
+      .section h2,.brand-photo-copy h2,.final-cta h2{line-height:1.45;letter-spacing:-.025em}
+      .section-lead,.concept-points p,.flow-card p,.guides p,details p{line-height:1.85}
+      .heading-line{white-space:normal!important}
+    }
+    @media(max-width:380px){.hero h1{font-size:34px}}
+  </style>
 </head>
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
@@ -13,120 +31,34 @@
     <div class="shell header-inner">
       <a class="brand" href="#top" aria-label="0EN WORK ホーム">0EN <span>WORK</span></a>
       <nav class="main-nav" aria-label="メインナビゲーション">
-        <a href="#concept">0ENの考え方</a>
-        <a href="#flow">使い方</a>
-        <a href="#principles">やらないこと</a>
-        <a href="#guides">求人の書き方</a>
+        <a href="#concept">0ENの考え方</a><a href="#flow">使い方</a><a href="#principles">やらないこと</a><a href="#guides">求人の書き方</a>
       </nav>
       <span class="header-cta is-disabled" aria-disabled="true">利用について聞く</span>
     </div>
   </header>
-
   <main id="main">
     <section class="hero" id="top">
       <div class="shell hero-grid">
         <div class="hero-copy">
           <p class="eyebrow">採用広報のための無料インフラ</p>
           <h1><span class="hero-line">求人ページくらい、</span><span class="hero-line">0円で作れてもいい。</span></h1>
-          <p class="hero-lead">求人原稿を作る。公開する。<br>自社のSNSやサイトから、必要な人へ届ける。</p>
-          <p class="hero-note">0EN WORKは、企業が自分で求人情報を整え、<br>自由に使える公開URLを作るためのサービスです。</p>
-          <div class="hero-actions">
-            <span class="button button-primary is-disabled" aria-disabled="true">0ENを無料で使う</span>
-            <a class="button button-secondary" href="#flow">仕組みを見る</a>
-          </div>
+          <p class="hero-lead">求人原稿を作る。公開する。自社のSNSやサイトから、必要な人へ届ける。</p>
+          <p class="hero-note">0EN WORKは、企業が自分で求人情報を整え、自由に使える公開URLを作るためのサービスです。</p>
+          <div class="hero-actions"><span class="button button-primary is-disabled" aria-disabled="true">0ENを無料で使う</span><a class="button button-secondary" href="#flow">仕組みを見る</a></div>
           <p class="hero-status"><span class="status-dot"></span>現在は検証版を開発中です</p>
         </div>
-        <div class="hero-visual">
-          <div class="product-window" aria-label="0EN WORKの求人管理画面イメージ">
-            <div class="window-bar"><span class="window-mark">0EN</span><span>求人管理</span><span class="window-menu">…</span></div>
-            <div class="window-body">
-              <div class="window-breadcrumb">企業ポータル　/　求人管理</div>
-              <div class="window-title-row"><div><p class="window-label">完成した求人原稿</p><h2>介護スタッフ</h2></div><span class="window-state">未掲載</span></div>
-              <div class="window-job-meta"><span>正社員</span><span>岡崎市</span><strong>月給250,000円～</strong></div>
-              <div class="window-progress"><span class="done">01 作る</span><i></i><span class="done">02 確認する</span><i></i><span>03 公開する</span></div>
-              <div class="window-actions"><span>編集</span><span>プレビュー</span><span class="window-share">共有 ↗</span></div>
-              <div class="window-footer"><span>作った求人は、自社サイトやSNSでも使えます。</span><span class="window-check">✓</span></div>
-            </div>
-          </div>
-        </div>
+        <div class="hero-visual"><div class="product-window" aria-label="0EN WORKの求人管理画面イメージ"><div class="window-bar"><span class="window-mark">0EN</span><span>求人管理</span><span class="window-menu">…</span></div><div class="window-body"><div class="window-breadcrumb">企業ポータル　/　求人管理</div><div class="window-title-row"><div><p class="window-label">完成した求人原稿</p><h2>介護スタッフ</h2></div><span class="window-state">未掲載</span></div><div class="window-job-meta"><span>正社員</span><span>岡崎市</span><strong>月給250,000円～</strong></div><div class="window-progress"><span class="done">01 作る</span><i></i><span class="done">02 確認する</span><i></i><span>03 公開する</span></div><div class="window-actions"><span>編集</span><span>プレビュー</span><span class="window-share">共有 ↗</span></div><div class="window-footer"><span>作った求人は、自社サイトやSNSでも使えます。</span><span class="window-check">✓</span></div></div></div></div>
       </div>
     </section>
-
-    <section class="zero-strip" aria-label="0ENの料金">
-      <div class="shell zero-grid">
-        <div><strong>0円</strong><span>求人掲載</span></div>
-        <div><strong>0円</strong><span>応募課金</span></div>
-        <div><strong>0円</strong><span>採用課金</span></div>
-        <p>掲載順位を販売しない、企業が自分で使える求人基盤です。</p>
-      </div>
-    </section>
-
-    <section class="brand-photo" aria-labelledby="brand-photo-title">
-      <div class="shell brand-photo-inner">
-        <div class="brand-photo-copy">
-          <p class="section-kicker">0EN WORK</p>
-          <h2 id="brand-photo-title">求人を作る。<br>公開する。<br>自分の場所から届ける。</h2>
-          <p>0ENは、企業が採用広報を始めるための道具を、<br>軽く、開いておくサービスです。</p>
-        </div>
-        <div class="brand-photo-media" aria-hidden="true"><img src="assets/lp/hero.png" alt=""></div>
-      </div>
-    </section>
-
-    <section class="section concept" id="concept">
-      <div class="shell narrow">
-        <p class="section-kicker">WHAT 0EN IS</p>
-        <h2><span class="heading-line">0ENは、求人広告枠を売る</span><span class="heading-line">サービスではありません。</span></h2>
-        <p class="section-lead">企業が求人原稿を作成し、公開URLを発行し、すでに持っているSNS・自社サイト・LINE・紙の告知へ自由に広げるための場所です。</p>
-        <div class="concept-points">
-          <div><span>01</span><h3>原稿は企業のもの</h3><p>0ENに掲載しなくても、完成した原稿は自社サイトや他媒体で再利用できます。</p></div>
-          <div><span>02</span><h3>応募は企業の受付先へ</h3><p>0ENで応募者情報を集めず、企業が指定したメール・電話・フォームへ直接進みます。</p></div>
-          <div><span>03</span><h3>集客経路を奪わない</h3><p>X、Threads、Facebook、LINE、QRコードなど、企業が使いたい場所へ届けられます。</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section flow-section" id="flow">
-      <div class="shell">
-        <div class="section-heading"><div><p class="section-kicker">HOW IT WORKS</p><h2><span class="heading-line">求人を作って、</span><span class="heading-line">企業の手元から届ける。</span></h2></div><p>難しい採用管理を増やすのではなく、求人原稿を公開して使うところまでを軽くします。</p></div>
-        <div class="flow-grid">
-          <article class="flow-card"><span class="flow-number">01</span><h3>作る</h3><p>かんたん入力や他媒体からの原稿取り込みで、仕事内容・給与・勤務条件を整理します。</p><span class="flow-link">原稿を整える →</span></article>
-          <article class="flow-card"><span class="flow-number">02</span><h3>確認する</h3><p>不足情報や確認事項を見ながら、求職者に伝わる求人ページへ仕上げます。</p><span class="flow-link">公開前に確認 →</span></article>
-          <article class="flow-card"><span class="flow-number">03</span><h3>公開する</h3><p>0ENへの掲載は無料。企業が自由に使える求人URLが発行されます。</p><span class="flow-link">URLを発行 →</span></article>
-          <article class="flow-card"><span class="flow-number">04</span><h3>広める</h3><p>自社SNS、採用サイト、LINE、店頭POP、QRコードなどで告知します。</p><span class="flow-link">自分の経路で届ける →</span></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section principles" id="principles">
-      <div class="shell">
-        <div class="section-heading"><div><p class="section-kicker">OUR PROMISE</p><h2><span class="heading-line">余計なものを足さないから、</span><span class="heading-line">無料で続ける。</span></h2></div><p>0ENが何をするかだけでなく、何をしないかも先に公開します。</p></div>
-        <div class="promise-grid">
-          <article class="promise-card"><span class="promise-icon">+</span><h3>企業に提供すること</h3><ul><li>求人原稿の作成・整理</li><li>無料掲載と公開URLの発行</li><li>SNS・自社サイト・他媒体への共有</li><li>原稿の編集・複製・再利用</li></ul></article>
-          <article class="promise-card promise-card-muted"><span class="promise-icon">−</span><h3>企業にしないこと</h3><ul><li>掲載料・応募課金・採用課金</li><li>上位表示や掲載順位の販売</li><li>電話・訪問・営業メール</li><li>原稿や掲載先の囲い込み</li></ul></article>
-          <article class="promise-card"><span class="promise-icon">+</span><h3>求職者に提供すること</h3><ul><li>求人一覧・検索・詳細閲覧</li><li>給与や勤務条件の確認</li><li>企業が指定した応募先への移動</li><li>アカウントなしでの求人探し</li></ul></article>
-          <article class="promise-card promise-card-muted"><span class="promise-icon">−</span><h3>求職者にしないこと</h3><ul><li>求職者アカウントの必須化</li><li>履歴書・応募者情報の保存</li><li>応募や採用の保証</li><li>雇用のあっせん</li></ul></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section guides" id="guides">
-      <div class="shell guide-grid">
-        <div><p class="section-kicker">FOR EMPLOYERS</p><h2>求人の書き方も、<br>無料で開いていく。</h2><p>仕事内容・給与・勤務時間の伝え方や、AIを補助に使うときのプロンプト例を、求人担当者向けに公開します。</p><span class="text-link is-disabled" aria-disabled="true">利用について問い合わせる →</span></div>
-        <div class="guide-note"><p class="guide-note-label">求人原稿をAIで整理するとき</p><p>入力していない事実は追加しない。給与や条件を推測しない。不明点は「要確認」として残す。</p><div class="guide-note-footer">AIは任意の補助道具。最終確認は企業が行います。</div></div>
-      </div>
-    </section>
-
-    <section class="section faq-section" id="faq">
-      <div class="shell narrow"><p class="section-kicker">FAQ</p><h2>よくある質問</h2><div class="faq-list"><details open><summary>本当に無料ですか？</summary><p>求人掲載料、応募課金、採用課金は0円を基本にします。正式な提供条件は公開時に確定します。</p></details><details><summary>0EN内で応募を受け付けますか？</summary><p>現時点では受け付けません。企業が指定したメール、電話、自社応募フォームなどへ直接進む設計です。</p></details><details><summary>作った求人を他の場所でも使えますか？</summary><p>はい。完成した原稿は企業のものとして、自社サイトや他媒体へ自由に再利用できることを基本にします。</p></details><details><summary>企業への掲載営業はしますか？</summary><p>電話営業、訪問営業、未承諾の営業メールやDMは行いません。</p></details></div></div>
-    </section>
-
-    <section class="final-cta">
-      <div class="shell narrow"><p class="section-kicker">0EN WORK</p><h2>求人を出すことを、<br>もっと普通に。</h2><p>企業が自分で求人を作り、自分の場所から届けられる選択肢を作ります。</p><span class="button button-primary is-disabled" aria-disabled="true">0ENを無料で使う →</span></div>
-    </section>
+    <section class="zero-strip" aria-label="0ENの料金"><div class="shell zero-grid"><div><strong>0円</strong><span>求人掲載</span></div><div><strong>0円</strong><span>応募課金</span></div><div><strong>0円</strong><span>採用課金</span></div><p>掲載順位を販売しない、企業が自分で使える求人基盤です。</p></div></section>
+    <section class="brand-photo" aria-labelledby="brand-photo-title"><div class="shell brand-photo-inner"><div class="brand-photo-copy"><p class="section-kicker">0EN WORK</p><h2 id="brand-photo-title">求人を作る。<br>公開する。<br>自分の場所から届ける。</h2><p>0ENは、企業が採用広報を始めるための道具を、軽く、開いておくサービスです。</p></div><div class="brand-photo-media" aria-hidden="true"><img src="assets/lp/hero.png" alt=""></div></div></section>
+    <section class="section concept" id="concept"><div class="shell narrow"><p class="section-kicker">WHAT 0EN IS</p><h2><span class="heading-line">0ENは、求人広告枠を売る</span><span class="heading-line">サービスではありません。</span></h2><p class="section-lead">企業が求人原稿を作成し、公開URLを発行し、すでに持っているSNS・自社サイト・LINE・紙の告知へ自由に広げるための場所です。</p><div class="concept-points"><div><span>01</span><h3>原稿は企業のもの</h3><p>0ENに掲載しなくても、完成した原稿は自社サイトや他媒体で再利用できます。</p></div><div><span>02</span><h3>応募は企業の受付先へ</h3><p>0ENで応募者情報を集めず、企業が指定したメール・電話・フォームへ直接進みます。</p></div><div><span>03</span><h3>集客経路を奪わない</h3><p>X、Threads、Facebook、LINE、QRコードなど、企業が使いたい場所へ届けられます。</p></div></div></div></section>
+    <section class="section flow-section" id="flow"><div class="shell"><div class="section-heading"><div><p class="section-kicker">HOW IT WORKS</p><h2><span class="heading-line">求人を作って、</span><span class="heading-line">企業の手元から届ける。</span></h2></div><p>難しい採用管理を増やすのではなく、求人原稿を公開して使うところまでを軽くします。</p></div><div class="flow-grid"><article class="flow-card"><span class="flow-number">01</span><h3>作る</h3><p>かんたん入力や他媒体からの原稿取り込みで、仕事内容・給与・勤務条件を整理します。</p><span class="flow-link">原稿を整える →</span></article><article class="flow-card"><span class="flow-number">02</span><h3>確認する</h3><p>不足情報や確認事項を見ながら、求職者に伝わる求人ページへ仕上げます。</p><span class="flow-link">公開前に確認 →</span></article><article class="flow-card"><span class="flow-number">03</span><h3>公開する</h3><p>0ENへの掲載は無料。企業が自由に使える求人URLが発行されます。</p><span class="flow-link">URLを発行 →</span></article><article class="flow-card"><span class="flow-number">04</span><h3>広める</h3><p>自社SNS、採用サイト、LINE、店頭POP、QRコードなどで告知します。</p><span class="flow-link">自分の経路で届ける →</span></article></div></div></section>
+    <section class="section principles" id="principles"><div class="shell"><div class="section-heading"><div><p class="section-kicker">OUR PROMISE</p><h2><span class="heading-line">余計なものを足さないから、</span><span class="heading-line">無料で続ける。</span></h2></div><p>0ENが何をするかだけでなく、何をしないかも先に公開します。</p></div><div class="promise-grid"><article class="promise-card"><span class="promise-icon">+</span><h3>企業に提供すること</h3><ul><li>求人原稿の作成・整理</li><li>無料掲載と公開URLの発行</li><li>SNS・自社サイト・他媒体への共有</li><li>原稿の編集・複製・再利用</li></ul></article><article class="promise-card promise-card-muted"><span class="promise-icon">−</span><h3>企業にしないこと</h3><ul><li>掲載料・応募課金・採用課金</li><li>上位表示や掲載順位の販売</li><li>電話・訪問・営業メール</li><li>原稿や掲載先の囲い込み</li></ul></article><article class="promise-card"><span class="promise-icon">+</span><h3>求職者に提供すること</h3><ul><li>求人一覧・検索・詳細閲覧</li><li>給与や勤務条件の確認</li><li>企業が指定した応募先への移動</li><li>アカウントなしでの求人探し</li></ul></article><article class="promise-card promise-card-muted"><span class="promise-icon">−</span><h3>求職者にしないこと</h3><ul><li>求職者アカウントの必須化</li><li>履歴書・応募者情報の保存</li><li>応募や採用の保証</li><li>雇用のあっせん</li></ul></article></div></div></section>
+    <section class="section guides" id="guides"><div class="shell guide-grid"><div><p class="section-kicker">FOR EMPLOYERS</p><h2>求人の書き方も、<br>無料で開いていく。</h2><p>仕事内容・給与・勤務時間の伝え方や、AIを補助に使うときのプロンプト例を、求人担当者向けに公開します。</p><span class="text-link is-disabled" aria-disabled="true">利用について問い合わせる →</span></div><div class="guide-note"><p class="guide-note-label">求人原稿をAIで整理するとき</p><p>入力していない事実は追加しない。給与や条件を推測しない。不明点は「要確認」として残す。</p><div class="guide-note-footer">AIは任意の補助道具。最終確認は企業が行います。</div></div></div></section>
+    <section class="section faq-section" id="faq"><div class="shell narrow"><p class="section-kicker">FAQ</p><h2>よくある質問</h2><div class="faq-list"><details open><summary>本当に無料ですか？</summary><p>求人掲載料、応募課金、採用課金は0円を基本にします。正式な提供条件は公開時に確定します。</p></details><details><summary>0EN内で応募を受け付けますか？</summary><p>現時点では受け付けません。企業が指定したメール、電話、自社応募フォームなどへ直接進む設計です。</p></details><details><summary>作った求人を他の場所でも使えますか？</summary><p>はい。完成した原稿は企業のものとして、自社サイトや他媒体へ自由に再利用できることを基本にします。</p></details><details><summary>企業への掲載営業はしますか？</summary><p>電話営業、訪問営業、未承諾の営業メールやDMは行いません。</p></details></div></div></section>
+    <section class="final-cta"><div class="shell narrow"><p class="section-kicker">0EN WORK</p><h2>求人を出すことを、<br>もっと普通に。</h2><p>企業が自分で求人を作り、自分の場所から届けられる選択肢を作ります。</p><span class="button button-primary is-disabled" aria-disabled="true">0ENを無料で使う →</span></div></section>
   </main>
-
-  <footer class="site-footer">
-    <div class="shell footer-inner"><div><a class="brand" href="#top">0EN <span>WORK</span></a><p>採用に、お金をかけない。<br>採用する人に、お金をかける。</p></div><div class="footer-contact"><p>現在は検証版を開発中です。</p><span>info@0en.work</span></div></div>
-  </footer>
+  <footer class="site-footer"><div class="shell footer-inner"><div><a class="brand" href="#top">0EN <span>WORK</span></a><p>採用に、お金をかけない。<br>採用する人に、お金をかける。</p></div><div class="footer-contact"><p>現在は検証版を開発中です。</p><span>info@0en.work</span></div></div></footer>
 </body>
 </html>
