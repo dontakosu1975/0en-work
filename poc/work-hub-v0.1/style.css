@@ -13,11 +13,16 @@
 .work-hub .search-hint{margin:0;color:var(--muted);font-size:12px}
 .work-hub .fixture-notice{margin:19px 0 0;padding:10px 13px;border-left:3px solid #8b9ba8;background:#f7f8f9;color:#53616d;font-size:12px;line-height:1.7}
 .work-hub .work-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:20px}
-.work-hub .work-card-link{display:flex;min-width:0;color:inherit;text-decoration:none;border-radius:var(--radius)}
+.work-hub .work-card-link{display:flex;flex:1;min-width:0;flex-direction:column;color:inherit;text-decoration:none;border-radius:var(--radius)}
 .work-hub .work-card-link:focus-visible{outline:3px solid #f3bd4f;outline-offset:3px}
 .work-hub .work-card{display:flex;flex:1;min-width:0;flex-direction:column;padding:20px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);transition:border-color .15s ease,box-shadow .15s ease}
-.work-hub .work-card-link:hover .work-card{border-color:#aabac7;box-shadow:0 8px 20px rgba(24,33,43,.07)}
+.work-hub .work-card:hover{border-color:#aabac7;box-shadow:0 8px 20px rgba(24,33,43,.07)}
 .work-hub .card-label-row,.work-hub .card-state-row{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.work-hub .card-label-row{justify-content:space-between}
+.work-hub .pin-button{display:inline-flex;align-items:center;justify-content:center;min-width:36px;min-height:36px;padding:5px 8px;border:1px solid var(--line);border-radius:7px;background:var(--white);color:var(--ink);font:inherit;font-size:17px;line-height:1;cursor:pointer}
+.work-hub .pin-button:hover{background:#f3f5f6}
+.work-hub .pin-button[aria-pressed="true"]{border-color:#d8c98b;background:#fff8df}
+.work-hub .pin-button:focus-visible{outline:3px solid #75a9d0;outline-offset:2px}
 .work-hub .kind-chip,.work-hub .status-chip,.work-hub .category-chip{display:inline-flex;align-items:center;min-height:24px;padding:2px 8px;border:1px solid var(--line);border-radius:5px;background:#f7f8f9;color:#455564;font-size:11px;line-height:1.45}
 .work-hub .kind-chip{font-weight:700;color:var(--blue);background:var(--blue-soft);border-color:#d7e7f4}
 .work-hub .status-chip{font-weight:600}
@@ -54,6 +59,7 @@
   .work-hub .work-section{padding-top:42px;padding-bottom:54px}
   .work-hub .work-grid{grid-template-columns:1fr;gap:11px}
   .work-hub .work-card{padding:18px}
+  .work-hub .pin-button{min-width:38px;min-height:38px}
   .work-hub .card-title{font-size:19px}
   .work-hub .detail-section{padding-top:26px}
   .work-hub .back-link{margin-bottom:24px}
