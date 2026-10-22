@@ -1,0 +1,88 @@
+[
+  {
+    "id": "work-job-sample-001",
+    "schema_type": "job",
+    "created_at": "2026-10-01T09:00:00+09:00",
+    "updated_at": "2026-10-08T15:30:00+09:00",
+    "current_revision": {
+      "id": "revision-job-sample-001-v1",
+      "schema_version": "0.1",
+      "title": "自動車部品の製造スタッフ",
+      "summary": "地域のものづくり企業で、自動車部品の製造を担う仕事です。",
+      "actor": {
+        "type": "group",
+        "display_name": "東海ものづくり採用チーム（架空）"
+      },
+      "activity_status": "active",
+      "categories": ["製造", "ものづくり"],
+      "images": [],
+      "external_links": [],
+      "type_data": {
+        "job": {
+          "employer": {
+            "name": "みずほ部品工業株式会社（架空）"
+          },
+          "content": {
+            "description": "自動車部品の製造ラインで、部品の加工・検品・梱包を担当します。手順書に沿って作業し、慣れるまでは先輩社員がサポートします。"
+          }
+        }
+      }
+    },
+    "publication_status": "published",
+    "related_work_ids": []
+  },
+  {
+    "id": "work-project-sample-001",
+    "schema_type": "generic_work",
+    "created_at": "2026-09-20T10:00:00+09:00",
+    "updated_at": "2026-10-15T18:00:00+09:00",
+    "current_revision": {
+      "id": "revision-project-sample-001-v1",
+      "schema_version": "0.1",
+      "title": "0EN Builderを開発する",
+      "summary": "専門的なコードを書かなくても、Webページを組み立てて公開できるツールを目指して開発しています。",
+      "actor": {
+        "type": "group",
+        "display_name": "0EN Builder開発チーム（仮）"
+      },
+      "activity_status": "active",
+      "categories": ["ソフトウェア開発", "Web制作"],
+      "images": [],
+      "external_links": [],
+      "type_data": {
+        "generic_work": {
+          "description": "画面上の操作からページの構成を作り、プレビューしながら調整できるWeb制作ツールを試作しています。使う人がHTMLやCSSを一から書かずに、自分のページを形にできることを目標にしています。"
+        }
+      }
+    },
+    "publication_status": "published",
+    "related_work_ids": []
+  },
+  {
+    "id": "work-personal-sample-001",
+    "schema_type": "generic_work",
+    "created_at": "2026-08-05T12:00:00+09:00",
+    "updated_at": "2026-10-12T20:00:00+09:00",
+    "current_revision": {
+      "id": "revision-personal-sample-001-v1",
+      "schema_version": "0.1",
+      "title": "町の音を記録した音作品",
+      "summary": "身近な場所の音を記録し、短い音作品として制作しました。",
+      "actor": {
+        "type": "person",
+        "display_name": "個人制作者（架空）"
+      },
+      "activity_status": "completed",
+      "categories": ["音楽・音作品", "制作活動"],
+      "images": [],
+      "external_links": [],
+      "type_data": {
+        "generic_work": {
+          "description": "駅前の夕方、商店街の朝、雨の日の公園などで環境音を録音し、編集して数分程度の音作品にまとめました。制作した作品の一部を小さな展示で紹介しました。"
+        }
+      }
+    },
+    "publication_status": "published",
+    "related_work_ids": []
+  }
+]
