@@ -3,13 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AddressSearch Androidのプライバシーポリシーです。">
-  <title>AddressSearch Android Privacy Policy | 0EN WORK</title>
+  <meta name="description" content="AddressSearch Androidアプリの位置情報、Geocoder、Google Maps、端末内データの取り扱いについて説明します。">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://0en.work/privacy/addresssearch/">
+  <title>AddressSearch Privacy Policy | 0EN WORK</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../lp.css">
   <link rel="stylesheet" href="../../work-pages.css">
+  <link rel="stylesheet" href="../../addresssearch.css">
 </head>
-<body class="work-page">
+<body class="work-page address-page">
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header">
     <div class="shell header-inner">
@@ -17,59 +20,68 @@
       <nav class="main-nav" aria-label="ページナビゲーション">
         <a href="../../works/addresssearch/">AddressSearch</a>
         <a href="../../about-work/">WORKとは</a>
-        <a href="./" aria-current="page">Privacy Policy</a>
       </nav>
     </div>
   </header>
   <main id="main">
     <section class="work-hero">
       <div class="work-hero-inner">
-        <p class="work-eyebrow">ADDRESSSEARCH ANDROID / PRIVACY</p>
+        <p class="work-eyebrow">ADDRESSSEARCH / PRIVACY</p>
         <h1>Privacy Policy</h1>
-        <p class="work-hero-lead">AddressSearch Androidにおける情報の扱い。</p>
-        <p class="work-hero-copy">最終更新日：2026年10月23日。AddressSearch Android（以下「本アプリ」）は、外出先の最寄り駅や周辺施設を探すためのアプリです。本ポリシーは、本アプリが扱う情報とその利用方法を説明します。</p>
+        <p class="work-hero-lead">AddressSearch Androidアプリの情報の取り扱い</p>
+        <p class="work-hero-copy">このページでは、AddressSearchが利用する位置情報、外部サービスへの引き継ぎ、端末内に保存する情報について説明します。</p>
+        <p class="privacy-updated">最終更新日：2026年10月23日</p>
       </div>
     </section>
 
-    <section class="work-section work-section-white" aria-labelledby="location-title">
-      <div class="work-inner">
-        <p class="work-kicker">01 / INFORMATION</p>
-        <h2 id="location-title">取得する情報</h2>
-        <dl class="example-list">
-          <div class="example-row"><dt>位置情報</dt><dd>「現在地を取得」を押したとき、または初回起動時の位置情報許可後にAndroidの位置情報機能から現在地を取得します。最寄り駅の候補表示と周辺検索のために一時的に使用し、本アプリのサーバーへ保存しません。バックグラウンドで位置情報を追跡しません。</dd></div>
-          <div class="example-row"><dt>入力した目的地</dt><dd>入力した住所・施設名は、目的地の座標確認と最寄り駅候補の表示のために使用します。入力内容を本アプリのサーバーへ保存する機能はありません。AndroidのGeocoderの提供元や通信の有無は端末・OSの実装により異なります。</dd></div>
-          <div class="example-row"><dt>スポット設定</dt><dd>追加した「近くのスポット」の名前は、次回起動時にも表示するため端末内のアプリ領域に保存します。アプリをアンインストールすると削除されます。</dd></div>
-        </dl>
-      </div>
-    </section>
+    <section class="work-section work-section-white" aria-labelledby="policy-title">
+      <div class="work-inner privacy-content">
+        <h2 id="policy-title">AddressSearch Android プライバシーポリシー</h2>
+        <p>AddressSearch（以下「本アプリ」）は、0ENが開発・提供するAndroidアプリです。本ポリシーは、本アプリの現在の実装に基づき、情報の利用と外部サービスへの引き継ぎについて説明します。</p>
 
-    <section class="work-section actor-section" aria-labelledby="maps-title">
-      <div class="work-inner">
-        <p class="work-kicker">02 / GOOGLE MAPS</p>
-        <h2 id="maps-title">Google Mapsへの引き継ぎ</h2>
-        <div class="actor-callout">
-          <span class="actor-number">外部サービス</span>
-          <div>
-            <h3>ボタンを押したときだけ、Google Mapsを開きます。</h3>
-            <p>駅の徒歩経路、周辺施設、地図表示でボタンを押すと、選択した目的地の座標または検索語をGoogle Mapsの公式URL、Google Mapsアプリ、または端末のブラウザへ渡します。Google Maps側の利用規約とプライバシーポリシーが適用され、本アプリはGoogle Mapsの検索結果を保存・スクレイピングしません。</p>
-          </div>
-        </div>
-      </div>
-    </section>
+        <h2>1. 位置情報</h2>
+        <p>本アプリは、近くの駅候補を表示するために、Androidの位置情報機能から現在地を取得します。初回起動時に位置情報の権限を求め、許可されている場合に現在地を取得します。画面上の操作から現在地を取得することもできます。Androidの位置情報権限で選択された範囲に応じて、おおよその位置または正確な位置を利用します。</p>
+        <p>取得した位置情報は、駅候補の検索や周辺検索の起点としてアプリの動作中に使用します。位置情報を本アプリの独自サーバーへ送信したり、アプリ内へ保存したりする実装はありません。本アプリはバックグラウンドで位置情報を取得・追跡しません。</p>
 
-    <section class="work-section work-section-white" aria-labelledby="sharing-title">
-      <div class="work-inner">
-        <p class="work-kicker">03 / USE &amp; CONTACT</p>
-        <h2 id="sharing-title">第三者提供・削除・お問い合わせ</h2>
-        <p class="work-intro">広告SDK、アクセス解析SDK、アカウント登録機能、独自サーバーへのデータ送信機能は使用していません。法令に基づく場合を除き、本アプリの利用情報を販売・提供することはありません。端末内に保存するスポット設定は、アプリ内で個別に削除でき、アンインストールでも削除されます。</p>
-        <p class="work-intro">本ポリシーや本アプリのデータ取り扱いについては、<a href="mailto:info@0en.work">info@0en.work</a> へお問い合わせください。本ポリシーを変更する場合は、このページの更新日を変更します。</p>
-        <a class="work-guide-cta" href="../../works/addresssearch/"><span>AddressSearch Androidの紹介ページへ戻る</span><span aria-hidden="true">→</span></a>
+        <h2>2. 入力した住所・目的地とAndroid Geocoder</h2>
+        <p>入力された住所や施設名は、座標を調べて駅候補を表示するため、Android標準のGeocoderへ渡します。Geocoderの提供元、通信の有無、処理や保存の詳細は端末・OS・位置情報サービスの実装によって異なり、0ENが一律に特定または管理するものではありません。端末・OS提供元の説明もご確認ください。</p>
+        <p>入力内容を本アプリ独自のサーバーへ送信したり、端末内に保存したりする実装はありません。</p>
+
+        <h2>3. Google Mapsへの引き継ぎ</h2>
+        <p>ユーザーが徒歩経路や周辺施設の検索などのボタンを押したとき、選択した場所の座標、駅名または検索語をGoogle Mapsの公式URL、Google Mapsアプリ、または端末のブラウザへ渡します。ユーザーがその操作を行わない限り、本アプリからGoogle Mapsへ情報を引き継ぎません。</p>
+        <p>Google Mapsやブラウザでの情報の取り扱いには、それぞれの提供者の規約・プライバシーポリシーが適用されます。本アプリはGoogle Mapsの検索結果を取得・保存・スクレイピングしません。</p>
+        <p><a href="https://policies.google.com/privacy?hl=ja" target="_blank" rel="noopener noreferrer">Google プライバシーポリシー</a></p>
+
+        <h2>4. 端末内データの保存・削除と管理</h2>
+        <p>ユーザーが追加した「近くのスポット」の名前は、次回起動時にも利用できるよう端末内のアプリ領域に保存します。アプリ内で個別に削除できます。アプリをアンインストールすると、アプリ領域に保存した内容は削除されます。</p>
+        <p>位置情報と入力した住所・目的地は、本アプリの独自サーバーや端末内の保存領域へ記録する実装はありません。0ENが管理するサーバーや管理画面でこれらを受信・保管する仕組みもありません。そのため、0ENが管理するシステムに保存された位置情報や入力履歴はなく、当社側での保存期間や削除処理の対象にはなりません。Google MapsやGeocoderの提供元へ渡った情報の保存・削除は、それぞれの提供元の方針に従います。</p>
+        <p>本アプリには、アカウント登録、広告SDK、アクセス解析SDK、開発者が管理する独自サーバーへの送信機能は実装されていません。</p>
+
+        <h2>5. 駅データの出典</h2>
+        <p>駅候補の表示には、国土交通省「国土数値情報 鉄道データ（N02・2024年版）」から駅名・路線名・事業者・位置情報等を抽出・整形したデータを使用しています。</p>
+        <ul>
+          <li>出典：国土交通省「国土数値情報 鉄道データ（N02・2024年度）」を加工して作成</li>
+          <li>ライセンス：CC BY 4.0</li>
+          <li><a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N02-2024.html" target="_blank" rel="noopener noreferrer">国土数値情報 鉄道データ（N02・2024年度）</a></li>
+          <li><a href="https://creativecommons.org/licenses/by/4.0/deed.ja" target="_blank" rel="noopener noreferrer">クリエイティブ・コモンズ 表示 4.0 国際（CC BY 4.0）</a></li>
+        </ul>
+
+        <h2>6. 表示情報に関する注意</h2>
+        <p>駅候補・距離は参考情報です。距離は直線距離で、実際の徒歩距離・経路とは異なります。アプリ内の徒歩時間も直線距離をもとにした目安です。実際の徒歩経路はGoogle Mapsでご確認ください。</p>
+
+        <h2>7. お問い合わせ</h2>
+        <p>本ポリシーや本アプリの情報の取り扱いについては、以下へお問い合わせください。</p>
+        <p class="contact-line">info@0en.work</p>
+
+        <h2>8. 本ポリシーの変更</h2>
+        <p>本アプリの機能や情報の取り扱いに変更があった場合、本ページの内容と最終更新日を更新します。</p>
+        <a class="page-back" href="../../works/addresssearch/"><span aria-hidden="true">←</span> AddressSearchのWORKページへ戻る</a>
       </div>
     </section>
   </main>
   <footer class="site-footer">
     <div class="shell footer-inner">
-      <div><a class="brand" href="../../">0EN <span>WORK</span></a><p>AddressSearch Android Privacy Policy</p></div>
+      <div><a class="brand" href="../../">0EN <span>WORK</span></a><p>AddressSearch 開発・提供：0EN</p></div>
       <nav class="work-footer-links" aria-label="関連ページ"><a href="../../works/addresssearch/">AddressSearch</a><a href="./" aria-current="page">Privacy Policy</a><a href="../../">0ENトップ</a></nav>
     </div>
   </footer>
