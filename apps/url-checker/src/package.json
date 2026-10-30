@@ -1,0 +1,37 @@
+{
+  "name": "job-url-checker-beta",
+  "version": "0.1.0",
+  "private": true,
+  "description": "\u6c42\u4eba URL \u751f\u5b58\u30c1\u30a7\u30c3\u30af \u03b2\u7248",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node --test test/core.test.js"
+  },
+  "devDependencies": {
+    "electron": "45.1.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "work.0en.urlchecker",
+    "productName": "0EN URL Checker Beta",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "server.js",
+      "public/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false
+    },
+    "portable": {
+      "artifactName": "0EN-URL-Checker-Beta.exe"
+    }
+  }
+}
